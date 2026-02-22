@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AdventureGame.Console/AdventureGame.Console.csproj" />
+    <Project Path="src/AdventureGame.Core/AdventureGame.Core.csproj" />
+  </Folder>
+</Solution>

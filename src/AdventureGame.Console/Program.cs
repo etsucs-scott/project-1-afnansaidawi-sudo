@@ -17,12 +17,12 @@ class Program
 					var tile = engine.Maze.Grid[x, y];
 					char symbol = tile.Type switch
 					{
-						TileType.Player => '@',
-						TileType.Wall => '#',
-						TileType.Monster => 'M',
-						TileType.Weapon => 'W',
-						TileType.Potion => 'P',
-						TileType.Exit => 'E',
+						TitleType.Player => '@',
+						TitleType.Wall => '#',
+						TitleType.Monster => 'M',
+						TitleType.Weapon => 'W',
+						TitleType.Potion => 'P',
+						TitleType.Exit => 'E',
 						_ => '.'
 					};
 					Console.Write(symbol + " ");

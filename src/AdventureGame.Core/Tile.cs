@@ -1,6 +1,6 @@
 namespace AdventureGame.Core
 {
-    public enum TileType
+    public enum TitleType
     {
         Empty,
         Wall,
@@ -13,11 +13,11 @@ namespace AdventureGame.Core
 
     public class Tile
     {
-        public TileType Type { get; set; }
+        public TitleType Type { get; set; }
         public Item? Item { get; set; }
         public Monster? Monster { get; set; }
 
-        public Tile(TileType type)
+        public Tile(TitleType type)
         {
             Type = type;
         }

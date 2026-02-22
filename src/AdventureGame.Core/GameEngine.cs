@@ -12,7 +12,7 @@ namespace AdventureGame.Core
             Maze = new Maze(width, height);
             Player = new Player();
             var start = Maze.PlayerStart;
-            Maze.Grid[start.X, start.Y].Type = TileType.Player;
+            Maze.Grid[start.X, start.Y].Type = TitleType.Player;
         }
 
         public string MovePlayer(ConsoleKey key)
@@ -32,7 +32,7 @@ namespace AdventureGame.Core
 
             if (newX < 0 || newX >= Maze.Width || newY < 0 || newY >= Maze.Height)
                 return "Cannot move outside the maze!";
-            if (Maze.Grid[newX, newY].Type == TileType.Wall)
+            if (Maze.Grid[newX, newY].Type == TitleType.Wall)
                 return "There is a wall!";
 
             var tile = Maze.Grid[newX, newY];
@@ -40,10 +40,10 @@ namespace AdventureGame.Core
 
             switch (tile.Type)
             {
-                case TileType.Empty:
+                case TitleType.Empty:
                     message = "Moved successfully.";
                     break;
-                case TileType.Weapon:
+                case TitleType.Weapon:
                     var weapon = tile.Item as Weapon;
                     if (weapon != null)
                     {
@@ -51,7 +51,7 @@ namespace AdventureGame.Core
                         message = weapon.PickupMessage;
                     }
                     break;
-                case TileType.Potion:
+                case TitleType.Potion:
                     var potion = tile.Item as Potion;
                     if (potion != null)
                     {
@@ -59,17 +59,17 @@ namespace AdventureGame.Core
                         message = potion.PickupMessage;
                     }
                     break;
-                case TileType.Monster:
+                case TitleType.Monster:
                     if (tile.Monster != null)
                         message = Battle(tile.Monster);
                     break;
-                case TileType.Exit:
+                case TitleType.Exit:
                     message = "You reached the exit! You won!";
                     break;
             }
 
-            Maze.Grid[currentPos.X, currentPos.Y].Type = TileType.Empty;
-            Maze.Grid[newX, newY].Type = TileType.Player;
+            Maze.Grid[currentPos.X, currentPos.Y].Type = TitleType.Empty;
+            Maze.Grid[newX, newY].Type = TitleType.Player;
 
             return message;
         }
@@ -80,7 +80,7 @@ namespace AdventureGame.Core
             {
                 for (int y = 0; y < Maze.Height; y++)
                 {
-                    if (Maze.Grid[x, y].Type == TileType.Player)
+                    if (Maze.Grid[x, y].Type == TitleType.Player)
                         return (x, y);
                 }
             }
@@ -113,7 +113,7 @@ namespace AdventureGame.Core
 
             var pos = GetPlayerPosition();
             Maze.Grid[pos.X, pos.Y].Monster = null;
-            Maze.Grid[pos.X, pos.Y].Type = TileType.Empty;
+            Maze.Grid[pos.X, pos.Y].Type = TitleType.Empty;
 
             return battleLog;
         }

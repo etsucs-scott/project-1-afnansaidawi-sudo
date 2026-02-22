@@ -29,17 +29,17 @@ namespace AdventureGame.Core
                 for (int y = 0; y < Height; y++)
                 {
                     if (x == 0 || y == 0 || x == Width - 1 || y == Height - 1)
-                        Grid[x, y] = new Tile(TileType.Wall);
+                        Grid[x, y] = new Tile(TitleType.Wall);
                     else
-                        Grid[x, y] = new Tile(TileType.Empty);
+                        Grid[x, y] = new Tile(TitleType.Empty);
                 }
             }
 
             PlayerStart = (1, 1);
-            Grid[PlayerStart.X, PlayerStart.Y].Type = TileType.Player;
+            Grid[PlayerStart.X, PlayerStart.Y].Type = TitleType.Player;
 
             ExitPosition = (Width - 2, Height - 2);
-            Grid[ExitPosition.X, ExitPosition.Y].Type = TileType.Exit;
+            Grid[ExitPosition.X, ExitPosition.Y].Type = TitleType.Exit;
 
             for (int i = 0; i < (Width * Height) / 5; i++)
             {
@@ -47,7 +47,7 @@ namespace AdventureGame.Core
                 int y = _random.Next(1, Height - 1);
 
                 if ((x, y) != PlayerStart && (x, y) != ExitPosition)
-                    Grid[x, y].Type = TileType.Wall;
+                    Grid[x, y].Type = TitleType.Wall;
             }
 
             for (int i = 0; i < (Width * Height) / 10; i++)
@@ -55,9 +55,9 @@ namespace AdventureGame.Core
                 int x = _random.Next(1, Width - 1);
                 int y = _random.Next(1, Height - 1);
 
-                if (Grid[x, y].Type == TileType.Empty)
+                if (Grid[x, y].Type == TitleType.Empty)
                 {
-                    Grid[x, y].Type = TileType.Monster;
+                    Grid[x, y].Type = TitleType.Monster;
                     Grid[x, y].Monster = new Monster();
                 }
             }
@@ -67,10 +67,10 @@ namespace AdventureGame.Core
                 int x = _random.Next(1, Width - 1);
                 int y = _random.Next(1, Height - 1);
 
-                if (Grid[x, y].Type == TileType.Empty)
+                if (Grid[x, y].Type == TitleType.Empty)
                 {
                     var weapon = new Weapon("Sword", _random.Next(1, 6));
-                    Grid[x, y].Type = TileType.Weapon;
+                    Grid[x, y].Type = TitleType.Weapon;
                     Grid[x, y].Item = weapon;
                 }
             }
@@ -80,10 +80,10 @@ namespace AdventureGame.Core
                 int x = _random.Next(1, Width - 1);
                 int y = _random.Next(1, Height - 1);
 
-                if (Grid[x, y].Type == TileType.Empty)
+                if (Grid[x, y].Type == TitleType.Empty)
                 {
                     var potion = new Potion("Health Potion", 20);
-                    Grid[x, y].Type = TileType.Potion;
+                    Grid[x, y].Type = TitleType.Potion;
                     Grid[x, y].Item = potion;
                 }
             }

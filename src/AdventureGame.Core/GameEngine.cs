@@ -4,9 +4,32 @@ namespace AdventureGame.Core
 {
     public class GameEngine
     {
+        /// <summary>
+        /// Gets the maze associated with the game engine.
+        /// </summary>
+        /// <value>
+        /// The <see cref="Maze"/> object that represents the current game map.
+        /// </value>
         public Maze Maze { get; private set; }
+
+        /// <summary>
+        /// Gets the player instance associated with the game engine.
+        /// </summary>
+        /// <value>
+        /// The <see cref="Player"/> object that represents the current player.
+        /// </value>
         public Player Player { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameEngine"/> class
+        /// with the specified maze dimensions.
+        /// </summary>
+        /// <param name="width">
+        /// The width of the maze. Default value is 10.
+        /// </param>
+        /// <param name="height">
+        /// The height of the maze. Default value is 10.
+        /// </param>
         public GameEngine(int width = 10, int height = 10)
         {
             Maze = new Maze(width, height);
@@ -15,6 +38,18 @@ namespace AdventureGame.Core
             Maze.Grid[start.X, start.Y].Type = TitleType.Player;
         }
 
+        /// <summary>
+        /// Moves the player within the maze based on the pressed key.
+        /// </summary>
+        /// <param name="key">
+        /// The <see cref="ConsoleKey"/> pressed by the user to control movement 
+        /// (W = up, S = down, A = left, D = right).
+        /// </param>
+        /// <returns>
+        /// A message describing the result of the move, such as successful movement,
+        /// encountering a wall, picking up an item, battling a monster, reaching the exit,
+        /// or an invalid action.
+        /// </returns>
         public string MovePlayer(ConsoleKey key)
         {
             var currentPos = GetPlayerPosition();
@@ -74,6 +109,15 @@ namespace AdventureGame.Core
             return message;
         }
 
+        /// <summary>
+        /// Gets the current position of the player.
+        /// </summary>
+        /// <value>
+        /// A tuple containing the X and Y coordinates of the player's current position.
+        /// </value>
+        /// <returns>
+        /// the players current position
+        /// </returns>
         private (int X, int Y) GetPlayerPosition()
         {
             for (int x = 0; x < Maze.Width; x++)
@@ -87,6 +131,16 @@ namespace AdventureGame.Core
             return Maze.PlayerStart;
         }
 
+        /// <summary>
+        /// Handles the combat sequence between the player and a monster.
+        /// </summary>
+        /// <param name="monster">
+        /// The monster that the player is battling.
+        /// </param>
+        /// <returns>
+        /// A string containing the full battle log, including damage dealt,
+        /// remaining health, and the final outcome of the fight.
+        /// </returns>
         private string Battle(Monster monster)
         {
             string battleLog = "";

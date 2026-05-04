@@ -5,12 +5,24 @@ class Program
 {
 	static void Main()
 	{
-		GameEngine engine = new GameEngine(10, 10);
+        
+        GameEngine engine = new GameEngine(10, 10);
 
 		while (engine.Player.IsAlive)
 		{
 			Console.Clear();
-			for (int y = 0; y < engine.Maze.Height; y++)
+            /// <summary>
+			/// Initilz the maze and display it on the console. 
+			/// Each tile type is represented by a different symbol: 
+			/// @ for the player, 
+			/// # for walls, 
+			/// M for monsters, 
+			/// W for weapons, 
+			/// P for potions, 
+			/// E for the exit, and . for empty spaces.
+			/// </summary>
+
+            for (int y = 0; y < engine.Maze.Height; y++)
 			{
 				for (int x = 0; x < engine.Maze.Width; x++)
 				{
@@ -33,7 +45,10 @@ class Program
 			Console.WriteLine($"\nYour HP: {engine.Player.Health}");
 			Console.WriteLine("Move with W/A/S/D");
 
-			var key = Console.ReadKey(true).Key;
+            /// <summary>
+			/// waiting for the users input for W/A/S/D
+			/// </summary>
+            var key = Console.ReadKey(true).Key;
 			string result = engine.MovePlayer(key);
 			Console.WriteLine(result);
 
